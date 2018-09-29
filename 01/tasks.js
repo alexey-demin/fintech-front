@@ -146,11 +146,48 @@ module.exports = {
 /**
  * Игра продолжается, пока пользователь не угадает. После этого выводит в консоль результат.
  */
-function guessNumberA() {}
+function guessNumberA() {
+  const number = Math.floor(Math.random() * 100) + 1;
+  let input = window.prompt('Угадайте число');
+  let numberOfAttempts = 1;
+  while(true) {
+    if (input === null) return null;
+    input = parseInt(input);
+    if (isNaN(input)) {
+      input = window.prompt('Введите число');
+      continue;
+    }
+    if (input === number) {
+      window.prompt('В точку!');
+      console.log(number);
+      break;
+    }
+    if (input > number) {
+      numberOfAttempts++;
+      input = window.prompt('Слишком много');
+    }
+    else {
+      numberOfAttempts++;
+      input = window.prompt('Слишком мало');
+    }
+  }
+  return numberOfAttempts;
+}
 
 /**
  * По завершению игры пользователю предлагается сыграть еще раз. После каждого тура выводится последний и лучший результаты.
  */
-function guessNumberB() {}
+function guessNumberB() {
+  let bestResult = Infinity;
+  do
+  {
+    let result = guessNumberA();
+    if (result !== null) {
+      if (bestResult > result) bestResult = result;
+      console.log(`Результат: ${result}`);
+      console.log(`Лучший результат: ${bestResult}`);
+    }
+  } while (window.prompt('Сыграть ещё раз?') !== null)
+}
 
 /*=====  End of НЕ ВОШЛО В РЕЛИЗ  ======*/
