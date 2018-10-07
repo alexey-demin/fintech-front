@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 /* =============================
 =            РЕЛИЗ            =
 ============================= */
@@ -6,13 +7,13 @@
  * Исправьте проблему с таймером: должны выводиться числа от 0 до 9.
  * Доп. задание: предложите несколько вариантов решения.
  */
-// function timer(logger = console.log) {
-//   for (let i = 0; i < 10; i++) {
-//     setTimeout(() => {
-//       logger(i);
-//     }, 100);
-//   }
-// }
+function timer(logger = console.log) {
+  for (let i = 0; i < 10; i++) {
+    setTimeout(() => {
+      logger(i);
+    }, 100);
+  }
+}
 
 // function timer(logger = console.log) {
 //   for(var i = 0; i < 10; i++){
@@ -21,17 +22,17 @@
 //             logger(i);
 //           }, 100);
 //     })(i);
-//   }  
+//   }
 // }
 
-function timer(logger = console.log) {
-  for (var i = 0; i < 10; i++) {
-    const x = i;
-    setTimeout(() => {
-      logger(x);
-    }, 100);
-  }
-}
+// function timer(logger = console.log) {
+//   for (var i = 0; i < 10; i++) {
+//     const x = i;
+//     setTimeout(() => {
+//       logger(x);
+//     }, 100);
+//   }
+// }
 
 /*= ============================================ */
 
@@ -43,9 +44,9 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
-  return function() {
-    return func.apply(context, [].concat(args, Array.from(arguments)));
-  }
+  return function bind(...argumets) {
+    return func.apply(context, [].concat(args, Array.from(argumets)));
+  };
 }
 
 /*= ============================================ */
@@ -62,13 +63,15 @@ function sum(x) {
   if (arguments.length === 0) { return 0; }
   let currentSum = x;
 
-  return b = function(a) {
-    if (a === undefined) { 
-      return currentSum; 
+  function b(a) {
+    if (a === undefined) {
+      return currentSum;
     }
     currentSum += a;
     return b;
   }
+
+  return b;
 }
 
 /*= ============================================ */
@@ -80,12 +83,13 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
-  if (first.length !== second.length) { 
-    return false; 
+  if (first.length !== second.length) {
+    return false;
   }
-  first = first.toLowerCase().split("").sort().join("");
-  second = second.toLowerCase().split("").sort().join("");
-  return first === second;
+  const firstString = first.toLowerCase().split('').sort().join('');
+  const secondString = second.toLowerCase().split('').sort().join('');
+
+  return firstString === secondString;
 }
 
 /*= ============================================ */
@@ -97,10 +101,10 @@ function anagram(first, second) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  let uniqueElements = {};
+  const uniqueElements = {};
 
-  for (let i = 0; i < arr.length; i++){
-    uniqueElements[arr[i]] = "";
+  for (let i = 0; i < arr.length; i++) {
+    uniqueElements[arr[i]] = '';
   }
   return Object.keys(uniqueElements).sort((a, b) => a - b);
 }
@@ -112,9 +116,9 @@ function getUnique(arr) {
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getIntersection(first, second) {
-  return first.length < second.length ? 
-  getUnique(first.filter(elemet => second.indexOf(elemet) !== -1)) : 
-  getUnique(second.filter(elemet => first.indexOf(elemet) !== -1));
+  return first.length < second.length ?
+    getUnique(first.filter(elemet => second.indexOf(elemet) !== -1)) :
+    getUnique(second.filter(elemet => first.indexOf(elemet) !== -1));
 }
 
 /* ============================================= */
@@ -133,16 +137,15 @@ function getIntersection(first, second) {
  * @return {boolean}
  */
 function isIsomorphic(left, right) {
-  if (left.length !== right.length) { 
-    return false; 
+  if (left.length !== right.length) {
+    return false;
   }
- 
+
   let differences = 0;
-  for(let i = 0; i < left.length; i++){
-    if (left[i] !== right[i]) {
-      if (++differences > 1) { 
-        return false; 
-      }
+
+  for (let i = 0; i < left.length; i++) {
+    if (left[i] !== right[i] && ++differences > 1) {
+      return false;
     }
   }
   return true;
