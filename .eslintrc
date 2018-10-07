@@ -32,7 +32,7 @@
       ],
       "no-restricted-imports": [1,  "lodash", "crypto", "bluebird", "setimmediate2"],
       "no-var": 2,
-      "no-loop-func": 1,
+      "no-loop-func": 0,
       "no-shadow": 1,
       "vars-on-top": 0,
       "jsx-a11y/href-no-hash": 0,
@@ -57,7 +57,7 @@
       "new-parens": 1,
       "class-methods-use-this": 1,
       "no-return-assign": 1,
-      "no-plusplus": [1, { "allowForLoopAfterthoughts": true }],
+      "no-plusplus": 0,
       "no-restricted-properties": 1, // включить
       "one-var": [
         1,
@@ -118,7 +118,7 @@
           "props": false
         }
       ],
-      "no-console": 1,
+      "no-console": 0,
       "curly": [
         2,
         "all"
@@ -201,4 +201,3 @@
       "tinkoff/ui-npm-only": 0
     }
   }
-  
