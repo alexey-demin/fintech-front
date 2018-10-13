@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 /**
  * Создайте класс, обладающий следующим поведением:
  * const values = ['hello', 'javascript', 'world'];
@@ -10,7 +11,15 @@
  */
 class NumberAndString {
   constructor(str) {
+    this.str = str;
+  }
 
+  toString() {
+    return this.str;
+  }
+
+  valueOf() {
+    return this.str.length;
   }
 }
 
